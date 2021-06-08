@@ -15,6 +15,12 @@ public class Command {
         this.privilege = privilege;
     }
 
+    @Override
+    public String toString() {
+        return "Command: active: " + active + "," + "name: " + commandName + "," + "privilege: " + privilege;
+    }
+
+
     // Code that runs when a terminal executes this command
     void execute(Computer computer, ArrayList<String> args, ArrayList<String> flags) {
 
