@@ -20,4 +20,30 @@ public class FilePath {
             }
         }
     }
+
+    public FilePath(Folder folder) {
+        Folder currFolder = folder;
+
+        while (true) {
+            if (!currFolder.parent.isRoot) {
+                path.add(currFolder);
+                currFolder = currFolder.parent;
+            } else {
+                return;
+            }
+        }
+    }
+
+    public FilePath(File file) {
+        Folder currFolder = file.parent;
+
+        while (true) {
+            if (!currFolder.parent.isRoot) {
+                path.add(currFolder);
+                currFolder = currFolder.parent;
+            } else {
+                return;
+            }
+        }
+    }
 }

@@ -8,16 +8,19 @@ public class Folder {
     Vector<Folder> childFolders;
     Vector<File> childFiles;
 
-    String folderName;
+    public String folderName;
+    boolean isRoot;
 
     public Folder(Folder parent, String name) {
         this.parent = parent;
         this.folderName = name;
+        this.isRoot = false;
     }
 
     // This should only be to initialize root
     public Folder() {
         this.folderName = "";
+        this.isRoot = true;
     }
 
     @Override

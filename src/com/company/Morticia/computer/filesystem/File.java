@@ -8,13 +8,15 @@ import java.util.ArrayList;
 public class File<T> {
     public String name;
     public String extension;
+    public Folder parent;
 
     public ArrayList<T> data;
 
-    public File(String name, String extension) {
+    public File(String name, String extension, Folder parent) {
         data = new ArrayList<>();
         this.name = name;
         this.extension = extension;
+        this.parent = parent;
     }
 
     public ArrayList<String> serialize() {
