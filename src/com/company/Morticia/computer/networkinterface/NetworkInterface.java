@@ -32,10 +32,8 @@ public class NetworkInterface extends NetworkComponent {
     @Override
     public void handlePacket(Packet packet) {
         super.handlePacket(packet);
-        if (portOpen(packet.receiverPort)) {
-            if (packet.receiverPort == 0) {
-                computer.addInput(packet.data);
-            }
+        if (isPacketValid(packet, 0)) {
+            computer.addInput(packet.data);
         }
     }
 }

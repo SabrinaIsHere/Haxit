@@ -6,7 +6,7 @@ public class NetworkComponent {
     public IPAddress ip;
     public ArrayList<NetworkComponent> connectedDevices;
     public boolean acceptingTraffic;
-    public ArrayList<Integer> openPorts;
+    public ArrayList<Port> ports;
     public Network network;
 
     public NetworkComponent() {
@@ -16,12 +16,25 @@ public class NetworkComponent {
     }
 
     public boolean portOpen(int port) {
-        for (Integer i : openPorts) {
-            if (i == port) {
-                return true;
+        for (Port i : ports) {
+            if (i.portNumber == port) {
+                return i.open;
             }
         }
         return false;
+    }
+
+    public Port getPort(int portNumber) {
+        for (Port i : ports) {
+            if (i.portNumber == portNumber) {
+                return i;
+            }
+        }
+        return null;
+    }
+
+    public boolean isPacketValid(Packet packet, int protocol) {
+        return portOpen(packet.receiverPort) && packet.protocol == protocol && getPort(packet.receiverPort).acceptsProtocol(protocol);
     }
 
     // Override this in things that extend this class
