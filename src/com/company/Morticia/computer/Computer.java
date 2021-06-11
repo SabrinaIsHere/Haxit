@@ -1,13 +1,19 @@
 package com.company.Morticia.computer;
 
+import com.company.Morticia.computer.filesystem.Filesystem;
+import com.company.Morticia.computer.networkinterface.NetworkInterface;
 import com.company.Morticia.computer.terminal.Terminal;
 import com.company.Morticia.computer.terminal.commands.Command;
 
 public class Computer {
-    Terminal terminal;
+    public Terminal terminal;
+    public Filesystem filesystem;
+    public NetworkInterface networkInterface;
 
     public Computer() {
         this.terminal = new Terminal(this);
+        this.filesystem = new Filesystem(true);
+        this.networkInterface = new NetworkInterface(this);
     }
 
     public void tick() {

@@ -1,12 +1,11 @@
 package com.company.Morticia.computer.filesystem;
 
 import java.util.ArrayList;
-import java.util.Vector;
 
 public class Folder {
     Folder parent;
-    Vector<Folder> childFolders;
-    Vector<File> childFiles;
+    ArrayList<Folder> childFolders;
+    ArrayList<File> childFiles;
 
     public String folderName;
     boolean isRoot;
@@ -15,12 +14,18 @@ public class Folder {
         this.parent = parent;
         this.folderName = name;
         this.isRoot = false;
+
+        this.childFolders = new ArrayList<>();
+        this.childFiles = new ArrayList<>();
     }
 
     // This should only be to initialize root
     public Folder() {
         this.folderName = "";
         this.isRoot = true;
+
+        this.childFolders = new ArrayList<>();
+        this.childFiles = new ArrayList<>();
     }
 
     @Override
