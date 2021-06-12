@@ -24,7 +24,9 @@ public class Computer {
     }
 
     public void tick() {
-        terminal.processCommand();
+        for (int i = 0; i < terminal.inputStreamSize; i++) {
+            terminal.processCommand();
+        }
     }
 
     public void initDefaultCommands() {

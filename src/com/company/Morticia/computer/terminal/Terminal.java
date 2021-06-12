@@ -13,6 +13,7 @@ public class Terminal {
     private Profile currProfile;
 
     private ArrayList<String> inputStream;
+    public int inputStreamSize;
 
     private CommandInterpreter commandInterpreter;
 
@@ -23,12 +24,13 @@ public class Terminal {
         this.computer = computer;
         this.commandInterpreter = new CommandInterpreter();
         inputStream = new ArrayList<>();
+        this.inputStreamSize = 0;
         this.currProfile = currProfile;
     }
 
     public void processCommand() {
         if (!inputStream.isEmpty()) {
-            commandInterpreter.findAndExecuteCommand(new ProcessedText(inputStream.get(0)), 10);
+            commandInterpreter.findAndExecuteCommand(new ProcessedText(inputStream.get(0)), currProfile.privilege);
         }
     }
 
@@ -38,10 +40,12 @@ public class Terminal {
 
     public void addCommand(Command command) {
         commandInterpreter.addCommand(command);
+        inputStreamSize = inputStream.size();
     }
 
     public void addInput(String command) {
         inputStream.add(command);
+        inputStreamSize = inputStream.size();
     }
 
     // Will be done when file system is up and running
