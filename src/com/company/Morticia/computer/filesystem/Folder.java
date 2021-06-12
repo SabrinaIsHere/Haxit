@@ -10,9 +10,9 @@ import java.util.ArrayList;
  * @since 6/12/21
  */
 public class Folder {
-    Folder parent;
-    ArrayList<Folder> childFolders;
-    ArrayList<File> childFiles;
+    public Folder parent;
+    public ArrayList<Folder> childFolders;
+    public ArrayList<File> childFiles;
 
     public String folderName;
     boolean isRoot;
@@ -94,7 +94,7 @@ public class Folder {
      */
     public File removeFile(String fileName) {
         for (int i = 0; i < childFiles.size(); i++) {
-            if (childFiles.get(i).name.equals(fileName)) {
+            if (childFiles.get(i).fileName.equals(fileName)) {
                 return childFiles.remove(i);
             }
         }
@@ -144,7 +144,7 @@ public class Folder {
      */
     public boolean hasFile(String fileName) {
         for (File i : childFiles) {
-            if (i.name.equals(fileName)) {
+            if (i.fileName.equals(fileName)) {
                 return true;
             }
         }
@@ -174,7 +174,7 @@ public class Folder {
      */
     public File getFile(String fileName) {
         for (File i : childFiles) {
-            if (i.name.equals(fileName)) {
+            if (i.fileName.equals(fileName)) {
                 return i;
             }
         }

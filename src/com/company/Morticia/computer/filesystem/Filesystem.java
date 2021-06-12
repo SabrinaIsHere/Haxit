@@ -9,6 +9,7 @@ package com.company.Morticia.computer.filesystem;
  */
 public class Filesystem {
     public Folder root;
+    public Folder currFolder;
 
     /**
      * This constructor initializes root and optionally some standard folders
@@ -17,6 +18,7 @@ public class Filesystem {
      */
     public Filesystem(boolean initializeDefaultFiles) {
         root = new Folder();
+        currFolder = root;
 
         if (initializeDefaultFiles) {
             root.addFolder(new Folder(root, "bin"));

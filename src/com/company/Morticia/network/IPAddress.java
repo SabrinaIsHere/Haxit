@@ -47,6 +47,15 @@ public class IPAddress {
         }
     }
 
+    public IPAddress(String address) {
+        String []sections = address.split("\\.");
+        ip = address;
+        section1 = Integer.getInteger(sections[0]);
+        section2 = Integer.getInteger(sections[1]);
+        section3 = Integer.getInteger(sections[2]);
+        section4 = Integer.getInteger(sections[3]);
+    }
+
     /**
      * This method evaluates whether this IP is equal to another
      *

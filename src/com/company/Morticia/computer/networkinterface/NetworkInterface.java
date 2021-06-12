@@ -1,6 +1,8 @@
 package com.company.Morticia.computer.networkinterface;
 
 import com.company.Morticia.computer.Computer;
+import com.company.Morticia.network.IPAddress;
+import com.company.Morticia.network.IPRegistry;
 import com.company.Morticia.network.NetworkComponent;
 import com.company.Morticia.network.Packet;
 
@@ -64,6 +66,14 @@ public class NetworkInterface extends NetworkComponent {
         super.handlePacket(packet);
         if (isPacketValid(packet, 0)) {
             computer.addInput(packet.data);
+        } else if (isPacketValid(packet, 1)) {
+            if (packet.data.equals("1")) {
+                System.out.println("Successfully pinged " + packet.senderIP);
+            } else {
+                if (IPRegistry.hasEntry(packet.senderIP)) {
+                    IPRegistry.getEntry(packet.senderIP).networkInterface.handlePacket(new Packet(computer, packet.senderIP, 0, 0, 1, "1"));
+                }
+            }
         }
     }
 }

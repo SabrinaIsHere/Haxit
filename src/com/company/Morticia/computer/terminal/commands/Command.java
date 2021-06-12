@@ -46,8 +46,20 @@ public class Command {
      * @param args These are the arguments which the user passed to the command
      * @param flags These are the flags the user passed to the command, i.e. '-a'
      */
-    void execute(Computer computer, ArrayList<String> args, ArrayList<String> flags) {
+    public void execute(Computer computer, ArrayList<String> args, ArrayList<String> flags) {
 
+    }
+
+    /**
+     * This method determines whether the values passed to a command are valid
+     *
+     * @param computer Computer to be tested
+     * @param args Args to be tested
+     * @param flags Flags to be tested
+     * @return boolean Whether or not the parameters are valid for use
+     */
+    public boolean paramsValid(Computer computer, ArrayList<String> args, ArrayList<String> flags) {
+       return computer == null || args == null || flags == null;
     }
 
     /**

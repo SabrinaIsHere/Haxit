@@ -1,6 +1,9 @@
 package com.company.Morticia.computer.terminal.commands;
 
 import com.company.Morticia.Main;
+import com.company.Morticia.computer.terminal.commands.defaultcommands.cd;
+import com.company.Morticia.computer.terminal.commands.defaultcommands.ls;
+import com.company.Morticia.computer.terminal.commands.defaultcommands.ping;
 import com.company.Morticia.computer.terminal.textprocessing.ProcessedText;
 
 import java.util.ArrayList;
@@ -19,7 +22,9 @@ public class CommandInterpreter {
      * This method will initialize and add a number of commands which would be commonly found in a bash shell.
      */
     public void initDefaultCommands() {
-
+        commands.add(new cd(true, "cd", 0));
+        commands.add(new ls(true, "ls", 0));
+        commands.add(new ping(true, "ping", 0));
     }
 
     /**

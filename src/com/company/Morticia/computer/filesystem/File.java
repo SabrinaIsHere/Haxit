@@ -16,7 +16,7 @@ import java.util.ArrayList;
  * @param <T> The type of data to be stored by this file
  */
 public class File<T> {
-    public String name;
+    public String fileName;
     public String extension;
     public Folder parent;
 
@@ -25,13 +25,13 @@ public class File<T> {
     /**
      * This constructor initializes the members of this object.
      *
-     * @param name The name of the file being created
+     * @param fileName The name of the file being created
      * @param extension The extension of the file, i.e. .txt or .exe
      * @param parent The folder which this file resides within
      */
-    public File(String name, String extension, Folder parent) {
+    public File(String fileName, String extension, Folder parent) {
         data = new ArrayList<>();
-        this.name = name;
+        this.fileName = fileName;
         this.extension = extension;
         this.parent = parent;
     }
@@ -45,7 +45,7 @@ public class File<T> {
         ArrayList<String> tempData = new ArrayList<>();
 
         tempData.add("File");
-        tempData.add("name: " + name);
+        tempData.add("name: " + fileName);
         tempData.add("extension: " + extension);
 
         if (!data.isEmpty()) {

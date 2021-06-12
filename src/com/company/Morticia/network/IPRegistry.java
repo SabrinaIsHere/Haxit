@@ -40,4 +40,19 @@ public class IPRegistry {
         }
         return null;
     }
+
+    /**
+     * This method determines and returns whether a specified IP is present in the registry
+     *
+     * @param address Address to be checked for
+     * @return boolean Whether or not address is present
+     */
+    public static boolean hasEntry(IPAddress address) {
+        for (IPAddress i : addresses) {
+            if (i.equals(address)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
