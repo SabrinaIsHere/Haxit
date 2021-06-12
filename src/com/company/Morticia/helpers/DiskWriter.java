@@ -5,6 +5,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 // Will need a windows version, how you specify paths there is different
+
+/**
+ * NOT FINISHED DO NOT USE
+ * @deprecated
+ */
 public class DiskWriter {
     public static void writeFile(String name, String path, ArrayList<String> data) {
         String fullPath = path;

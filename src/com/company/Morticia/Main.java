@@ -16,7 +16,6 @@ public class Main {
 
         Scanner sc = new Scanner(System.in);
         while (true) {
-            // TODO: 6/11/21 Find way to simultaneously call tick and get player input 
             computer.addInput(sc.nextLine());
             computer.tick();
             for (Computer i : currScenario.machines) {

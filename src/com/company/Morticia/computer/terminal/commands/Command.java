@@ -4,40 +4,77 @@ import com.company.Morticia.computer.Computer;
 
 import java.util.ArrayList;
 
+/**
+ * This class is to be used to define a command which can be run on a machine. New classes are created which extend it and over ride the execute function to create new commands.
+ *
+ * @author Morticia
+ * @version 1.0
+ * @since 6/12/21
+ */
 public class Command {
     boolean active;
     String commandName;
     int privilege;
 
+    /**
+     * The constructor for Command initializes the three member variables active, commandName, and privilege.
+     *
+     * @param active This is the parameter which determines whether a command is active or not, as in, whether or not it can be executed
+     * @param commandName This parameter defines the name of the command, as in, what the terminal must detect in order to call this command
+     * @param privilege This parameter determines the level of privilege the user must have to execute this command, i.e. with privilege 1 only the root could execute it
+     */
     public Command(boolean active, String commandName, int privilege) {
         this.active = active;
         this.commandName = commandName;
         this.privilege = privilege;
     }
 
+    /**
+     * This method converts the command into a human readable string.
+     *
+     * @return String The string version of this object is returned.
+     */
     @Override
     public String toString() {
         return "Command: active: " + active + "," + "name: " + commandName + "," + "privilege: " + privilege;
     }
 
-
-    // Code that runs when a terminal executes this command
+    /**
+     * This method is called by the terminal when the command is executed.
+     *
+     * @param computer This is the computer that the command will operate upon
+     * @param args These are the arguments which the user passed to the command
+     * @param flags These are the flags the user passed to the command, i.e. '-a'
+     */
     void execute(Computer computer, ArrayList<String> args, ArrayList<String> flags) {
 
     }
 
-    // Whether or not this command will be executed, so user can activate/deactivate hard coded ones like this
-    boolean getActive() {
+    /**
+     * This method is a getter for the member 'active'.
+     *
+     * @return boolean active
+     */
+    public boolean getActive() {
         return active;
     }
 
-    // Gets name of the command
-    String getCommandName() {
+    /**
+     * This method is a getter for the member 'commandName'.
+     *
+     * @return String commandName
+     */
+    public String getCommandName() {
         return commandName;
     }
 
-    // What level of privilege you need to execute command, like user would be 0 and supervisor 1 or smth
-    int getPrivilegeLevel() {
+
+    /**
+     * This is a getter for the member 'privilege'.
+     *
+     * @return int privilege
+     */
+    public int getPrivilegeLevel() {
         return privilege;
     }
 }

@@ -5,6 +5,16 @@ import com.company.Morticia.computer.terminal.commands.Command;
 import java.util.ArrayList;
 
 // T is the type of data it stores, so you can have integers or strings or commands stored in the file
+
+/**
+ * This class is meant to store data in a way which is accessible and editable inside the game itself. Files can be executed if T is of type 'Command'
+ *
+ * @author Morticia
+ * @version 1.0
+ * @since 6/12/21
+ *
+ * @param <T> The type of data to be stored by this file
+ */
 public class File<T> {
     public String name;
     public String extension;
@@ -12,6 +22,13 @@ public class File<T> {
 
     public ArrayList<T> data;
 
+    /**
+     * This constructor initializes the members of this object.
+     *
+     * @param name The name of the file being created
+     * @param extension The extension of the file, i.e. .txt or .exe
+     * @param parent The folder which this file resides within
+     */
     public File(String name, String extension, Folder parent) {
         data = new ArrayList<>();
         this.name = name;
@@ -19,6 +36,11 @@ public class File<T> {
         this.parent = parent;
     }
 
+    /**
+     * This method converts the member variables of this file into a single string for easy conversion to a format which can be saved to a disk.
+     *
+     * @return The list of string version of data, in the order of: File (header so you know what the type is), name: , extension: , and ensuing data held within the file
+     */
     public ArrayList<String> serialize() {
         ArrayList<String> tempData = new ArrayList<>();
 

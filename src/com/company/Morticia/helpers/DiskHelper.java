@@ -6,6 +6,11 @@ import com.company.Morticia.computer.filesystem.Filesystem;
 import com.company.Morticia.computer.filesystem.Folder;
 
 // NEEDS DEBUGGING
+
+/**
+ * NOT FINISHED DO NOT USE
+ * @deprecated
+ */
 public class DiskHelper {
     private static String path;
 

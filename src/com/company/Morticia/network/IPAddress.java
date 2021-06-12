@@ -3,6 +3,13 @@ package com.company.Morticia.network;
 import java.util.ArrayList;
 import java.util.Objects;
 
+/**
+ * This class provides an automatically generated unique IP addresses to network enabled devices
+ *
+ * @author Morticia
+ * @version 1.0
+ * @since 6/12/21
+ */
 public class IPAddress {
     public static ArrayList<String> ipRegistry = new ArrayList<>();
 
@@ -12,6 +19,9 @@ public class IPAddress {
     public final int section4;
     public final String ip;
 
+    /**
+     * This constructor generates four unique random sequences of numbers and a string which can be accessed at any time
+     */
     public IPAddress() {
         int temp1 = (int) (Math.random()*(999-1+1)+1);
         int temp2 = (int) (Math.random()*(999-1+1)+1);
@@ -37,16 +47,17 @@ public class IPAddress {
         }
     }
 
+    /**
+     * This method evaluates whether this IP is equal to another
+     *
+     * @param o Object to be compared with
+     * @return boolean Whether or no they are equal
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         IPAddress ipAddress = (IPAddress) o;
         return section1 == ipAddress.section1 && section2 == ipAddress.section2 && section3 == ipAddress.section3 && section4 == ipAddress.section4 && ip.equals(ipAddress.ip);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(section1, section2, section3, section4, ip);
     }
 }
