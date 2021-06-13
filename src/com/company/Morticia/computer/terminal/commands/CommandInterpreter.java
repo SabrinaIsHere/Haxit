@@ -1,6 +1,8 @@
 package com.company.Morticia.computer.terminal.commands;
 
+import com.company.Morticia.EntryPoint;
 import com.company.Morticia.Main;
+import com.company.Morticia.computer.Computer;
 import com.company.Morticia.computer.terminal.commands.defaultcommands.*;
 import com.company.Morticia.computer.terminal.textprocessing.ProcessedText;
 
@@ -33,11 +35,11 @@ public class CommandInterpreter {
      * @param processedText This is the text which will be used to find the intended command
      * @param privilege This is the privilege level which is to be used to determine whether this is executed
      */
-    public void findAndExecuteCommand(ProcessedText processedText, int privilege) {
+    public void findAndExecuteCommand(Computer machine, ProcessedText processedText, int privilege) {
         for (Command i : commands) {
             if (i.getCommandName().equals(processedText.getCommand()) && i.getActive()) {
                 if (i.getPrivilegeLevel() <= privilege) {
-                    i.execute(Main.computer, processedText.getArgs(), processedText.getFlags());
+                    i.execute(machine, processedText.getArgs(), processedText.getFlags());
                 }
             }
         }

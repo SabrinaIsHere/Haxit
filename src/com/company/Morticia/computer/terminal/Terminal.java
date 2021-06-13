@@ -46,7 +46,7 @@ public class Terminal {
      */
     public void processCommand() {
         if (!inputStream.isEmpty()) {
-            commandInterpreter.findAndExecuteCommand(new ProcessedText(inputStream.get(0)), currProfile.privilege);
+            commandInterpreter.findAndExecuteCommand(computer, new ProcessedText(inputStream.get(0)), currProfile.privilege);
             inputStream.remove(0);
         }
     }
