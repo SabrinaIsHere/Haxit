@@ -1,4 +1,4 @@
-package com.company.Morticia.menu;
+package com.company.Morticia.scenarios;
 
 import com.company.Morticia.computer.Computer;
 

@@ -20,10 +20,12 @@ public class cd extends Command {
     @Override
     public void execute(Computer computer, ArrayList<String> args, ArrayList<String> flags) {
         if (paramsValid(computer, args, flags)) {
-            if (args.get(0).equals("..")) {
-                computer.filesystem.currFolder = computer.filesystem.currFolder.parent;
-            } else {
-                computer.filesystem.currFolder = computer.filesystem.currFolder.getFolder(args.get(0));
+            if (args.size() >= 1) {
+                if (args.get(0).equals("..")) {
+                    computer.filesystem.currFolder = computer.filesystem.currFolder.parent;
+                } else {
+                    computer.filesystem.currFolder = computer.filesystem.currFolder.getFolder(args.get(0));
+                }
             }
         } else {
             System.out.println("Error: invalid parameters passed to command. Quitting.");

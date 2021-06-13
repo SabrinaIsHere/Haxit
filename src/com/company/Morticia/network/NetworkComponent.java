@@ -23,6 +23,9 @@ public class NetworkComponent {
         this.ip = new IPAddress();
         this.connectedDevices = new ArrayList<>();
         this.acceptingTraffic = true;
+        this.ports = new ArrayList<>();
+
+        IPRegistry.addEntry(this, ip);
     }
 
     /**

@@ -1,5 +1,8 @@
 package com.company.Morticia.menu;
 
+import com.company.Morticia.scenarios.Scenario;
+import com.company.Morticia.scenarios.ScenarioRegistry;
+
 import java.util.Scanner;
 
 /**
@@ -23,9 +26,16 @@ public class Menu {
             System.out.println(j + ": " + i.name);
         }
 
+        int input;
         while (true) {
             Scanner sc = new Scanner(System.in);
-            int input = sc.nextInt();
+            try {
+                input = sc.nextInt();
+            } catch (Exception e) {
+                System.out.println("Please enter a number");
+                continue;
+            }
+            sc.nextLine();
 
             if (input <= j && input >= 0) {
                 return ScenarioRegistry.ScenarioList.get(input - 1);

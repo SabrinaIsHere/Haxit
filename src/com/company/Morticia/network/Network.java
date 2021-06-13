@@ -1,5 +1,7 @@
 package com.company.Morticia.network;
 
+import com.company.Morticia.computer.Computer;
+
 import java.util.ArrayList;
 
 /**
@@ -47,5 +49,25 @@ public class Network {
             }
         }
         return null;
+    }
+
+    /**
+     * This method adds a device to the network
+     *
+     * @param device The device to be added
+     */
+    public void addDevice(NetworkComponent device) {
+        connectedDevices.add(device);
+        device.network = this;
+    }
+
+    /**
+     * This method adds a device to the network
+     *
+     * @param device The device to be added
+     */
+    public void addDevice(Computer device) {
+        connectedDevices.add(device.networkInterface);
+        device.networkInterface.network = this;
     }
 }

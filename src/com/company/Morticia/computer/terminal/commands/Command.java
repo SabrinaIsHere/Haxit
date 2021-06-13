@@ -59,7 +59,7 @@ public class Command {
      * @return boolean Whether or not the parameters are valid for use
      */
     public boolean paramsValid(Computer computer, ArrayList<String> args, ArrayList<String> flags) {
-       return computer == null || args == null || flags == null;
+       return computer != null || args != null || flags != null;
     }
 
     /**

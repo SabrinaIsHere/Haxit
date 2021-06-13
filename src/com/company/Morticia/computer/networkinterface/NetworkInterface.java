@@ -1,10 +1,7 @@
 package com.company.Morticia.computer.networkinterface;
 
 import com.company.Morticia.computer.Computer;
-import com.company.Morticia.network.IPAddress;
-import com.company.Morticia.network.IPRegistry;
-import com.company.Morticia.network.NetworkComponent;
-import com.company.Morticia.network.Packet;
+import com.company.Morticia.network.*;
 
 import java.util.Arrays;
 
@@ -54,6 +51,16 @@ public class NetworkInterface extends NetworkComponent {
         this.computer = computer;
     }
 
+    /**
+     * Initializes the default ports for a computer. Optional.
+     *
+     * Enables:
+     *   Port 0 with protocol 1, for pinging
+     */
+    public void initDefaultPorts() {
+        ports.add(new Port(0, new int[]{1}));
+    }
+
     // 0 = execute command
 
     /**
@@ -68,10 +75,10 @@ public class NetworkInterface extends NetworkComponent {
             computer.addInput(packet.data);
         } else if (isPacketValid(packet, 1)) {
             if (packet.data.equals("1")) {
-                System.out.println("Successfully pinged " + packet.senderIP);
+                System.out.println("Successfully pinged " + packet.senderIP.ip);
             } else {
                 if (IPRegistry.hasEntry(packet.senderIP)) {
-                    IPRegistry.getEntry(packet.senderIP).networkInterface.handlePacket(new Packet(computer, packet.senderIP, 0, 0, 1, "1"));
+                    IPRegistry.getEntry(packet.senderIP).handlePacket(new Packet(computer, packet.senderIP, 0, 0, 1, "1"));
                 }
             }
         }

@@ -1,7 +1,5 @@
 package com.company.Morticia.network;
 
-import com.company.Morticia.computer.Computer;
-
 import java.util.ArrayList;
 
 /**
@@ -12,17 +10,17 @@ import java.util.ArrayList;
  * @since 6/12/21
  */
 public class IPRegistry {
-    private static ArrayList<Computer> computers = new ArrayList<>();
+    private static ArrayList<NetworkComponent> machines = new ArrayList<>();
     private static ArrayList<IPAddress> addresses = new ArrayList<>();
 
     /**
      * This method adds an entry which will then be discoverable
      *
-     * @param computer The computer the IP corresponds with
+     * @param machine The computer the IP corresponds with
      * @param address The address the computer corresponds with
      */
-    public static void addEntry(Computer computer, IPAddress address) {
-        computers.add(computer);
+    public static void addEntry(NetworkComponent machine, IPAddress address) {
+        machines.add(machine);
         addresses.add(address);
     }
 
@@ -32,10 +30,10 @@ public class IPRegistry {
      * @param address The address the computer corresponds with
      * @return Computer The computer which the address passed corresponds with
      */
-    public static Computer getEntry(IPAddress address) {
+    public static NetworkComponent getEntry(IPAddress address) {
         for (int i = 0; i < addresses.size(); i++) {
             if (addresses.get(i).ip.equals(address.ip)) {
-                return computers.get(i);
+                return machines.get(i);
             }
         }
         return null;
@@ -49,7 +47,7 @@ public class IPRegistry {
      */
     public static boolean hasEntry(IPAddress address) {
         for (IPAddress i : addresses) {
-            if (i.equals(address)) {
+            if (i.ip.equals(address.ip)) {
                 return true;
             }
         }

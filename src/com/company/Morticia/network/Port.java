@@ -48,4 +48,21 @@ public class Port {
         }
         return false;
     }
+
+    /**
+     * Converts the accepted protocols into a human readable string
+     *
+     * @return String Protocols which are accepted in string form
+     */
+    public String protocolsToString() {
+        StringBuilder buffer = new StringBuilder();
+        for (int i : acceptedProtocols) {
+            if (i != acceptedProtocols[acceptedProtocols.length - 1]) {
+                buffer.append(i).append(", ");
+            } else {
+                buffer.append(i);
+            }
+        }
+        return buffer.toString();
+    }
 }

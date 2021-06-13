@@ -2,6 +2,7 @@ package com.company.Morticia.network;
 
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.regex.Pattern;
 
 /**
  * This class provides an automatically generated unique IP addresses to network enabled devices
@@ -47,13 +48,18 @@ public class IPAddress {
         }
     }
 
+    /**
+     * This constructor generates and IPAddress object from a string, these will not be checked for conflicts with other IPs so use with caution.
+     *
+     * @param address The address to be converted into an object
+     */
     public IPAddress(String address) {
-        String []sections = address.split("\\.");
+        String []sections = address.split(Pattern.quote("."));
         ip = address;
-        section1 = Integer.getInteger(sections[0]);
-        section2 = Integer.getInteger(sections[1]);
-        section3 = Integer.getInteger(sections[2]);
-        section4 = Integer.getInteger(sections[3]);
+        section1 = Integer.parseInt(sections[0]);
+        section2 = Integer.parseInt(sections[1]);
+        section3 = Integer.parseInt(sections[2]);
+        section4 = Integer.parseInt(sections[3]);
     }
 
     /**
