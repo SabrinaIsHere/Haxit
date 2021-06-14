@@ -53,4 +53,13 @@ public class Packet {
         this.protocol = protocol;
         this.data = data;
     }
+
+    /**
+     * This method is used to send this packet to the ip address specified when this object was instanced
+     */
+    public void send() {
+        if (IPRegistry.hasEntry(this.receiverIP)) {
+            IPRegistry.getEntry(this.receiverIP).handlePacket(this);
+        }
+    }
 }
