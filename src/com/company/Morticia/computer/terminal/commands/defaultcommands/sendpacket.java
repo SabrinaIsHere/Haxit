@@ -1,5 +1,6 @@
 package com.company.Morticia.computer.terminal.commands.defaultcommands;
 
+import com.company.Morticia.EntryPoint;
 import com.company.Morticia.computer.Computer;
 import com.company.Morticia.computer.terminal.commands.Command;
 import com.company.Morticia.network.IPAddress;
@@ -25,6 +26,7 @@ public class sendpacket extends Command {
         if (paramsValid(computer, args, flags) && args.size() == 5) {
             if (IPRegistry.hasEntry(new IPAddress(args.get(0)))) {
                 IPRegistry.getEntry(new IPAddress(args.get(0))).handlePacket(new Packet(computer, new IPAddress(args.get(0)), Integer.parseInt(args.get(1)), Integer.parseInt(args.get(2)), Integer.parseInt(args.get(3)), args.get(4)));
+                EntryPoint.doubleTick = true;
             } else {
                 System.out.println("Invalid IP address. Quitting.");
             }

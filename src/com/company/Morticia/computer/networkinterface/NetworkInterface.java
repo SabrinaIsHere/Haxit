@@ -1,6 +1,8 @@
 package com.company.Morticia.computer.networkinterface;
 
 import com.company.Morticia.computer.Computer;
+import com.company.Morticia.computer.process.Process;
+import com.company.Morticia.computer.process.defaultprocesses.DefaultNetworkingProcess;
 import com.company.Morticia.network.*;
 
 import java.util.Arrays;
@@ -58,6 +60,7 @@ public class NetworkInterface extends NetworkComponent {
      *   Port 0 with protocol 1, for pinging
      */
     public void initDefaultPorts() {
+        computer.processInterface.addProcess(new DefaultNetworkingProcess("DefaultNetworkingProcess", computer.processInterface.allocateID(), true, computer));
         ports.add(new Port(0, new int[]{1}));
     }
 
@@ -71,15 +74,9 @@ public class NetworkInterface extends NetworkComponent {
     @Override
     public void handlePacket(Packet packet) {
         super.handlePacket(packet);
-        if (isPacketValid(packet, 0)) {
-            computer.addInput(packet.data);
-        } else if (isPacketValid(packet, 1)) {
-            if (packet.data.equals("1")) {
-                System.out.println("Successfully pinged " + packet.senderIP.ip);
-            } else {
-                if (IPRegistry.hasEntry(packet.senderIP)) {
-                    IPRegistry.getEntry(packet.senderIP).handlePacket(new Packet(computer, packet.senderIP, 0, 0, 1, "1"));
-                }
+        for (Process i : computer.processInterface.getProcesses()) {
+            if (i.acceptsPort(packet.receiverPort)) {
+                i.addPacket(packet);
             }
         }
     }

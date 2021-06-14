@@ -1,5 +1,8 @@
 package com.company.Morticia.network;
 
+import com.company.Morticia.computer.process.Process;
+import com.company.Morticia.computer.process.defaultprocesses.DefaultNetworkingProcess;
+
 import java.util.ArrayList;
 
 /**
@@ -15,6 +18,7 @@ public class NetworkComponent {
     public boolean acceptingTraffic;
     public ArrayList<Port> ports;
     public Network network;
+    public NetworkProcessInterface processInterface;
 
     /**
      * Assigns unique random IP address and initializes other class members
@@ -24,6 +28,7 @@ public class NetworkComponent {
         this.connectedDevices = new ArrayList<>();
         this.acceptingTraffic = true;
         this.ports = new ArrayList<>();
+        this.processInterface = new NetworkProcessInterface();
 
         IPRegistry.addEntry(this, ip);
     }
@@ -69,12 +74,21 @@ public class NetworkComponent {
         return portOpen(packet.receiverPort) && packet.protocol == protocol && getPort(packet.receiverPort).acceptsProtocol(protocol);
     }
 
+    public void initDefaultPorts() {
+        processInterface.addProcess(new DefaultNetworkComponentProcess("DefaultNetworkingProcess", processInterface.allocateID(), true, this));
+        ports.add(new Port(0, new int[]{1}));
+    }
+
     /**
      * This method is to be overridden in classes which extend this one. This will be called when a packet is received
      *
      * @param packet Packet which has been received by this device
      */
     public void handlePacket(Packet packet) {
-
+        for (Process i : processInterface.getProcesses()) {
+            if (i.acceptsPort(packet.receiverPort)) {
+                i.addPacket(packet);
+            }
+        }
     }
 }

@@ -16,6 +16,8 @@ import java.util.Scanner;
  * @since 6/13/21
  */
 public class EntryPoint {
+    public static boolean doubleTick = false;
+
     /**
      * This method is called by the user to start the game once all the prep, i.e. setting up scenarios, is done.
      *
@@ -33,7 +35,10 @@ public class EntryPoint {
 
         Scanner sc = new Scanner(System.in);
         while (true) {
-            computer.addInput(sc.nextLine());
+            if (!doubleTick) {
+                computer.addInput(sc.nextLine());
+                doubleTick = false;
+            }
             computer.tick();
             for (Computer i : currScenario.machines) {
                 i.tick();

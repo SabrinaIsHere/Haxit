@@ -2,6 +2,8 @@ package com.company.Morticia.computer;
 
 import com.company.Morticia.computer.filesystem.Filesystem;
 import com.company.Morticia.computer.networkinterface.NetworkInterface;
+import com.company.Morticia.computer.process.Process;
+import com.company.Morticia.computer.process.ProcessInterface;
 import com.company.Morticia.computer.profile.Profile;
 import com.company.Morticia.computer.terminal.Terminal;
 import com.company.Morticia.computer.terminal.commands.Command;
@@ -19,6 +21,7 @@ public class Computer {
     public Terminal terminal;
     public Filesystem filesystem;
     public NetworkInterface networkInterface;
+    public ProcessInterface processInterface;
 
     public ArrayList<Profile> profiles;
 
@@ -31,6 +34,7 @@ public class Computer {
         this.terminal = new Terminal(this, profiles.get(0));
         this.filesystem = new Filesystem(true);
         this.networkInterface = new NetworkInterface(this);
+        this.processInterface = new ProcessInterface();
     }
 
     /**
@@ -40,6 +44,7 @@ public class Computer {
         for (int i = 0; i < terminal.inputStreamSize; i++) {
             terminal.processCommand();
         }
+        processInterface.tick();
     }
 
     /**
@@ -65,5 +70,14 @@ public class Computer {
      */
     public void addInput(String command) {
         terminal.addInput(command);
+    }
+
+    /**
+     * Adds a process to the list of those which are run
+     *
+     * @param process Process to be added
+     */
+    public void startProcess(Process process) {
+        processInterface.addProcess(process);
     }
 }

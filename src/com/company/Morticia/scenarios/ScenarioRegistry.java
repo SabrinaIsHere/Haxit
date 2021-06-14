@@ -30,6 +30,7 @@ public class ScenarioRegistry {
      */
     public static void registerDefaultScenarios() {
         createDefaultScenario1();
+        createDefaultScenario2();
     }
 
     /**
@@ -56,5 +57,12 @@ public class ScenarioRegistry {
         enemyMachine.networkInterface.ports.add(new Port(5, new int[]{0}));
 
         registerScenario(new Scenario(new Computer[]{enemyMachine}, playerMachine, "Default Scenario 1"));
+    }
+
+    /**
+     * This sets up the second default scenario.
+     */
+    private static void createDefaultScenario2() {
+
     }
 }
