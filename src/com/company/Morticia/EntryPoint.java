@@ -18,9 +18,14 @@ import java.util.Scanner;
 public class EntryPoint {
     /**
      * This method is called by the user to start the game once all the prep, i.e. setting up scenarios, is done.
+     *
+     * @param initDefaultScenarios Whether or not to initialize the default scenarios before calling the menu
      */
-    public static void entryPoint() {
-        ScenarioRegistry.registerDefaultScenarios();
+    public static void entryPoint(boolean initDefaultScenarios) {
+        if (initDefaultScenarios) {
+            ScenarioRegistry.registerDefaultScenarios();
+        }
+
         Scenario currScenario = Menu.menuEntry();
         Computer computer = currScenario.playerMachine;
 
