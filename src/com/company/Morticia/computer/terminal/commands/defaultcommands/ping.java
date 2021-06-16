@@ -24,7 +24,7 @@ public class ping extends Command {
     public void execute(Computer computer, ArrayList<String> args, ArrayList<String> flags) {
         if (paramsValid(computer, args, flags)) {
             if (IPRegistry.hasEntry(new IPAddress(args.get(0)))) {
-                IPRegistry.getEntry(new IPAddress(args.get(0))).handlePacket(new Packet(computer, new IPAddress(args.get(0)), 0, 0, 1, "0"));
+                new Packet(computer, new IPAddress(args.get(0)), 0, 0, 1, "0").send();
             } else {
                 computer.outputStream.addPrintOutput("Invalid Ip adress. Quitting.");
             }

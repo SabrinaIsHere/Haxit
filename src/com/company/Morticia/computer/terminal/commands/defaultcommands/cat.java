@@ -30,7 +30,7 @@ public class cat extends Command {
                         computer.outputStream.addPrintOutput(i.toString());
                     }
                 } else {
-                    computer.outputStream.addPrintOutput("Please enter a valid file or folder to remove.");
+                    computer.outputStream.addPrintOutput("Please enter a valid file.");
                 }
             } else {
                 computer.outputStream.addPrintOutput("Please enter a valid file.");

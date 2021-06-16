@@ -27,6 +27,7 @@ public class connect extends Command {
                     computer.networkInterface.connectedDevices.add(IPRegistry.getEntry(new IPAddress(args.get(0))));
                 } else {
                     computer.outputStream.addPrintOutput("Invalid ip Address");
+                    System.out.println("x");
                 }
             } else {
                 computer.outputStream.addPrintOutput("Invalid ip Address");

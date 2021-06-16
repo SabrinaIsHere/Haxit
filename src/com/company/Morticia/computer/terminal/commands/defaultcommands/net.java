@@ -39,7 +39,7 @@ public class net extends Command {
                         }
                         if (!computer.networkInterface.connectedDevices.isEmpty()) {
                             computer.outputStream.addPrintOutput("Connected Devices:");
-                            for (NetworkComponent i : computer.networkInterface.network.connectedDevices) {
+                            for (NetworkComponent i : computer.networkInterface.connectedDevices) {
                                 computer.outputStream.addPrintOutput("  " + i.ip.ip);
                             }
                         }
@@ -57,6 +57,7 @@ public class net extends Command {
                         if (IPRegistry.hasEntry(new IPAddress(args.get(1)))) {
                             for (Port i : IPRegistry.getEntry(new IPAddress(args.get(1))).ports) {
                                 computer.outputStream.addPrintOutput(i.portNumber + ": " + i.protocolsToString());
+                                //System.out.println(i.portNumber + ": " + i.protocolsToString());
                             }
                         } else {
                             computer.outputStream.addPrintOutput("Error: Invalid Ip address. Quitting.");

@@ -84,10 +84,17 @@ public class NetworkComponent {
      * @param packet Packet which has been received by this device
      */
     public void handlePacket(Packet packet) {
-        for (Process i : processInterface.getProcesses()) {
+        for (NetworkProcess i : processInterface.processes) {
             if (i.acceptsPort(packet.receiverPort)) {
                 i.addPacket(packet);
             }
         }
+    }
+
+    /**
+     * This method is called by the game to animate this object
+     */
+    public void tick() {
+        this.processInterface.tick();
     }
 }

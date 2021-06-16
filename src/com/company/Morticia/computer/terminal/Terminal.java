@@ -23,7 +23,7 @@ public class Terminal {
     private ArrayList<String> inputStream;
     public int inputStreamSize;
 
-    private CommandInterpreter commandInterpreter;
+    public CommandInterpreter commandInterpreter;
 
     Computer computer;
 

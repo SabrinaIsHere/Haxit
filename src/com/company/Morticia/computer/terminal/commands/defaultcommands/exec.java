@@ -4,6 +4,7 @@ import com.company.Morticia.computer.Computer;
 import com.company.Morticia.computer.filesystem.File;
 import com.company.Morticia.computer.filesystem.Folder;
 import com.company.Morticia.computer.terminal.commands.Command;
+import com.company.Morticia.computer.terminal.commands.CommandInterpreter;
 import com.company.Morticia.computer.terminal.textprocessing.ProcessedText;
 
 import java.util.ArrayList;
@@ -29,8 +30,13 @@ public class exec extends Command {
                 if (currFolder.hasFile(args.get(0))) {
                     if (currFolder.getFile(args.get(0)).extension.equals("exe")) {
                         File<ProcessedText> currFile = currFolder.getFile(args.get(0));
-                        formatExecutable(currFile.data);
-                        for (ProcessedText i : currFile.data) {
+                        for (ProcessedText k : currFile.data) {
+                            ProcessedText i = new ProcessedText(k.toString());
+                            // If command [get_input] get input
+                            if (i.command.equals("[get_input]")) {
+                                Scanner sc = new Scanner(System.in);
+                                i.command = sc.nextLine();
+                            }
                             // If any arg in the file is [get_input] we will get user input
                             for (int j = 0; j < i.args.size(); j++) {
                                 if (i.args.get(j).equals("[get_input]")) {
@@ -38,7 +44,7 @@ public class exec extends Command {
                                     i.args.set(j, sc.nextLine());
                                 }
                             }
-                            computer.terminal.addInput(i.toString());
+                            computer.terminal.commandInterpreter.findAndExecuteCommand(computer, i, computer.terminal.currProfile.privilege);
                         }
                     } else {
                         computer.outputStream.addPrintOutput("File not executable. Quitting.");
@@ -49,19 +55,6 @@ public class exec extends Command {
             }
         } else {
             computer.outputStream.addPrintOutput("Please enter valid parameters. Quitting.");
-        }
-    }
-
-    private void formatExecutable(ArrayList<ProcessedText> data) {
-        for (ProcessedText i : data) {
-            if (!i.args.isEmpty()) {
-                for (int j = 0; j < i.args.size(); j++) {
-                    if (i.args.get(j).equals("[get_input]")) {
-                        Scanner sc = new Scanner(System.in);
-                        i.args.set(j, sc.nextLine());
-                    }
-                }
-            }
         }
     }
 }

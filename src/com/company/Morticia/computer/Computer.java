@@ -54,6 +54,7 @@ public class Computer {
             terminal.processCommand();
         }
         processInterface.tick();
+        networkInterface.processInterface.tick();
 
         ArrayList<Integer> objectsToRemove = new ArrayList<>();
         for (OutputObject i : outputStream.outputObjects) {

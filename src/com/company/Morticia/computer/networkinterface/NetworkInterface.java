@@ -60,24 +60,8 @@ public class NetworkInterface extends NetworkComponent {
      *   Port 0 with protocol 1, for pinging
      */
     public void initDefaultPorts() {
-        computer.processInterface.addProcess(new DefaultNetworkingProcess("DefaultNetworkingProcess", computer.processInterface.allocateID(), true, computer));
-        ports.add(new Port(0, new int[]{1}));
-    }
-
-    // 0 = execute command
-
-    /**
-     * This method is called when a packet is received by this object. It handles the packet sent and it's corresponding data.
-     *
-     * @param packet The packet which has been received
-     */
-    @Override
-    public void handlePacket(Packet packet) {
-        super.handlePacket(packet);
-        for (Process i : computer.processInterface.getProcesses()) {
-            if (i.acceptsPort(packet.receiverPort)) {
-                i.addPacket(packet);
-            }
-        }
+        computer.networkInterface.processInterface.addProcess(new DefaultNetworkingProcess("DefaultNetworkingProcess", computer.processInterface.allocateID(), true, computer.networkInterface));
+        ports.add(new Port(0, new int[]{1, 2}));
+        computer.processInterface.networkProcessAmount += computer.networkInterface.processInterface.processes.size();
     }
 }

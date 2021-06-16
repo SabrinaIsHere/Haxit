@@ -25,7 +25,8 @@ public class sendpacket extends Command {
     public void execute(Computer computer, ArrayList<String> args, ArrayList<String> flags) {
         if (paramsValid(computer, args, flags) && args.size() == 5) {
             if (IPRegistry.hasEntry(new IPAddress(args.get(0)))) {
-                IPRegistry.getEntry(new IPAddress(args.get(0))).handlePacket(new Packet(computer, new IPAddress(args.get(0)), Integer.parseInt(args.get(1)), Integer.parseInt(args.get(2)), Integer.parseInt(args.get(3)), args.get(4)));
+                Packet packet = new Packet(computer, new IPAddress(args.get(0)), Integer.parseInt(args.get(1)), Integer.parseInt(args.get(2)), Integer.parseInt(args.get(3)), args.get(4));
+                packet.send();
                 EntryPoint.doubleTick = true;
             } else {
                 computer.outputStream.addPrintOutput("Invalid IP address. Quitting.");

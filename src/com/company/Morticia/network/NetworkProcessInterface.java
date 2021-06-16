@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * @since 6/12/21
  */
 public class NetworkProcessInterface {
-    ArrayList<NetworkProcess> processes;
+    public ArrayList<NetworkProcess> processes;
 
     /**
      * Initializes the processes list
@@ -56,15 +56,6 @@ public class NetworkProcessInterface {
                 return;
             }
         }
-    }
-
-    /**
-     * Gets the processes as an array
-     *
-     * @return Process[] List of processes
-     */
-    public Process[] getProcesses() {
-        return processes.toArray(Process[]::new);
     }
 
     /**

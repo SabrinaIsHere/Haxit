@@ -1,11 +1,5 @@
 package com.company.Morticia.network;
 
-import com.company.Morticia.computer.Computer;
-import com.company.Morticia.computer.process.ProcessInterface;
-import com.company.Morticia.network.NetworkComponent;
-import com.company.Morticia.network.Packet;
-import com.company.Morticia.network.Port;
-
 import java.util.ArrayList;
 
 /**
@@ -16,9 +10,9 @@ import java.util.ArrayList;
  * @since 6/14/21
  */
 public class NetworkProcess {
-    String processName;
-    int processID;
-    boolean active;
+    public String processName;
+    public int processID;
+    public boolean active;
     public NetworkComponent networkComponent;
     public ArrayList<Packet> packetQueue;
     public ArrayList<String> dataQueue;

@@ -4,6 +4,7 @@ import com.company.Morticia.computer.Computer;
 import com.company.Morticia.computer.profile.Profile;
 import com.company.Morticia.helpers.CommandLineHelper;
 import com.company.Morticia.menu.Menu;
+import com.company.Morticia.network.NetworkComponent;
 import com.company.Morticia.scenarios.Scenario;
 import com.company.Morticia.scenarios.ScenarioRegistry;
 
@@ -51,16 +52,34 @@ public class EntryPoint {
 
         CommandLineHelper.clearCommandLine();
 
-        Scanner sc = new Scanner(System.in);
-        while (true) {
-            if (!doubleTick) {
-                System.out.print(playerMachine.terminal.terminalPrefix());
-                playerMachine.addInput(sc.nextLine());
+        if (currScenario.networkComponents == null) {
+            Scanner sc = new Scanner(System.in);
+            while (true) {
+                if (!doubleTick) {
+                    System.out.print(playerMachine.terminal.terminalPrefix());
+                    playerMachine.addInput(sc.nextLine());
+                }
                 doubleTick = false;
+                playerMachine.tick();
+                for (Computer i : currScenario.machines) {
+                    i.tick();
+                }
             }
-            playerMachine.tick();
-            for (Computer i : currScenario.machines) {
-                i.tick();
+        } else {
+            Scanner sc = new Scanner(System.in);
+            while (true) {
+                if (!doubleTick) {
+                    System.out.print(playerMachine.terminal.terminalPrefix());
+                    playerMachine.addInput(sc.nextLine());
+                }
+                doubleTick = false;
+                playerMachine.tick();
+                for (Computer i : currScenario.machines) {
+                    i.tick();
+                }
+                for (NetworkComponent i : currScenario.networkComponents) {
+                    i.tick();
+                }
             }
         }
     }

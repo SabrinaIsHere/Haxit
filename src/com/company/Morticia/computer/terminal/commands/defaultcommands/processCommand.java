@@ -4,6 +4,7 @@ import com.company.Morticia.computer.Computer;
 import com.company.Morticia.computer.process.Process;
 import com.company.Morticia.computer.terminal.commands.Command;
 import com.company.Morticia.helpers.TerminalColor;
+import com.company.Morticia.network.NetworkProcess;
 
 import java.util.ArrayList;
 
@@ -24,8 +25,14 @@ public class processCommand extends Command {
         if (paramsValid(computer, args, flags)) {
             if (flags.size() == 1) {
                 if (flags.get(0).equals("-l")) {
-                    Process[] processes = computer.processInterface.getProcesses();
-                    for (Process i : processes) {
+                    for (Process i : computer.processInterface.processes) {
+                        if (i.active) {
+                            computer.outputStream.addPrintOutput(TerminalColor.WHITE_BRIGHT + i.processName + ": " + i.processID + " (active)");
+                        } else {
+                            computer.outputStream.addPrintOutput(TerminalColor.WHITE + i.processName + ": " + i.processID + "( inactive)" + TerminalColor.WHITE_BRIGHT);
+                        }
+                    }
+                    for (NetworkProcess i : computer.networkInterface.processInterface.processes) {
                         if (i.active) {
                             computer.outputStream.addPrintOutput(TerminalColor.WHITE_BRIGHT + i.processName + ": " + i.processID + " (active)");
                         } else {
@@ -45,6 +52,7 @@ public class processCommand extends Command {
                         return;
                     }
                     computer.processInterface.stopProcess(id);
+                    computer.networkInterface.processInterface.stopProcess(id);
                 } else if (args.get(0).equals("start")) {
                     int id;
                     try {
@@ -54,6 +62,7 @@ public class processCommand extends Command {
                         return;
                     }
                     computer.processInterface.startProcess(id);
+                    computer.networkInterface.processInterface.startProcess(id);
                 } else {
                     computer.outputStream.addPrintOutput("Error: Please pass a valid argument. Quitting.");
                 }

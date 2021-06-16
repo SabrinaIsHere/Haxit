@@ -10,13 +10,15 @@ import java.util.ArrayList;
  * @since 6/12/21
  */
 public class ProcessInterface {
-    ArrayList<Process> processes;
+    public ArrayList<Process> processes;
+    public int networkProcessAmount;
 
     /**
      * This initializes the processes list
      */
     public ProcessInterface() {
         this.processes = new ArrayList<>();
+        this.networkProcessAmount = 0;
     }
 
     /**
@@ -57,15 +59,6 @@ public class ProcessInterface {
     }
 
     /**
-     * Gets the processes as an array
-     *
-     * @return Process[] Processes in array form
-     */
-    public Process[] getProcesses() {
-        return processes.toArray(Process[]::new);
-    }
-
-    /**
      * Allocates an ID for a process to use
      *
      * @return int Allocated ID
@@ -74,7 +67,7 @@ public class ProcessInterface {
         if (processes.isEmpty()) {
             return 1;
         } else {
-            return processes.size() - 1;
+            return (processes.size() - 1) + networkProcessAmount;
         }
     }
 

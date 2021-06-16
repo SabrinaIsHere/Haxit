@@ -1,6 +1,7 @@
 package com.company.Morticia.network;
 
 import com.company.Morticia.computer.Computer;
+import com.company.Morticia.computer.networkinterface.NetworkInterface;
 
 /**
  * This class serves to hold data which is transmitted between computers or networked machines
@@ -59,7 +60,8 @@ public class Packet {
      */
     public void send() {
         if (IPRegistry.hasEntry(this.receiverIP)) {
-            IPRegistry.getEntry(this.receiverIP).handlePacket(this);
+            NetworkComponent machine = IPRegistry.getEntry(this.receiverIP);
+            machine.handlePacket(this);
         }
     }
 }
