@@ -34,6 +34,7 @@ public class CommandInterpreter {
         commands.add(new echo(true, "echo", 0));
         commands.add(new transfer(true, "transfer", 0));
         commands.add(new processCommand(true, "process", 1));
+        commands.add(new connect(true, "connect", 0));
     }
 
     /**
