@@ -27,13 +27,13 @@ public class cat extends Command {
                 if (currFolder.hasFile(args.get(0))) {
                     File<?> file = currFolder.getFile(args.get(0));
                     for (Object i : file.data) {
-                        System.out.println(i);
+                        computer.outputStream.addPrintOutput(i.toString());
                     }
                 } else {
-                    System.out.println("Please enter a valid file or folder to remove.");
+                    computer.outputStream.addPrintOutput("Please enter a valid file or folder to remove.");
                 }
             } else {
-                System.out.println("Please enter a valid file.");
+                computer.outputStream.addPrintOutput("Please enter a valid file.");
             }
         }
     }

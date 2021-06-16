@@ -41,14 +41,14 @@ public class exec extends Command {
                             computer.terminal.addInput(i.toString());
                         }
                     } else {
-                        System.out.println("File not executable. Quitting.");
+                        computer.outputStream.addPrintOutput("File not executable. Quitting.");
                     }
                 }
             } else {
-                System.out.println("File not found. Quitting.");
+                computer.outputStream.addPrintOutput("File not found. Quitting.");
             }
         } else {
-            System.out.println("Please enter valid parameters. Quitting.");
+            computer.outputStream.addPrintOutput("Please enter valid parameters. Quitting.");
         }
     }
 

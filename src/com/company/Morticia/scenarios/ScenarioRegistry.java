@@ -38,8 +38,8 @@ public class ScenarioRegistry {
      */
     private static void createDefaultScenario1() {
         // Init machines
-        Computer playerMachine = new Computer();
-        Computer enemyMachine = new Computer();
+        Computer playerMachine = new Computer(true);
+        Computer enemyMachine = new Computer(false);
 
         // Commands
         playerMachine.initDefaultCommands();

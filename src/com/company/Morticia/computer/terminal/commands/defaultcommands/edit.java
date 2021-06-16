@@ -34,12 +34,6 @@ public class edit extends Command {
                     if (name.size() >= 2) {
                         if (name.get(1).equals("txt")) {
                             File<String> newFile = currFolder.getFile(name.get(0) + "." + name.get(1));
-                            if (newFile == null) {
-                                System.out.println("file is null");
-                            }
-                            if (newFile.data == null) {
-                                System.out.println("data is null");
-                            }
                             CommandLineHelper.fetchLongInput(newFile.data);
                         } else if (name.get(1).equals("exe")) {
                             File<ProcessedText> newFile = currFolder.getFile(name.get(0) + "." + name.get(1));

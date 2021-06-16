@@ -1,5 +1,8 @@
 package com.company.Morticia.computer;
 
+import com.company.Morticia.computer.OutputStream.OStream;
+import com.company.Morticia.computer.OutputStream.OutputObject;
+import com.company.Morticia.computer.OutputStream.OutputOption;
 import com.company.Morticia.computer.filesystem.Filesystem;
 import com.company.Morticia.computer.networkinterface.NetworkInterface;
 import com.company.Morticia.computer.process.Process;
@@ -22,19 +25,25 @@ public class Computer {
     public Filesystem filesystem;
     public NetworkInterface networkInterface;
     public ProcessInterface processInterface;
+    public OStream outputStream;
+    public OStream savedOutput;
+    public final boolean isPlayerMachine;
 
     public ArrayList<Profile> profiles;
 
     /**
      * This constructor initializes all the class members.
      */
-    public Computer() {
+    public Computer(boolean isPlayerMachine) {
         this.profiles = new ArrayList<>();
         profiles.add(new Profile("root", "root", true));
         this.terminal = new Terminal(this, profiles.get(0));
         this.filesystem = new Filesystem(true);
         this.networkInterface = new NetworkInterface(this);
         this.processInterface = new ProcessInterface();
+        this.outputStream = new OStream();
+        this.savedOutput = new OStream();
+        this.isPlayerMachine = isPlayerMachine;
     }
 
     /**
@@ -45,6 +54,25 @@ public class Computer {
             terminal.processCommand();
         }
         processInterface.tick();
+
+        ArrayList<Integer> objectsToRemove = new ArrayList<>();
+        for (OutputObject i : outputStream.outputObjects) {
+            if (isPlayerMachine) {
+                if (i.outputOption == OutputOption.PRINT) {
+                    System.out.println(i.data);
+                } else if (i.outputOption == OutputOption.SAVE) {
+                    savedOutput.addOutput(i);
+                } else if (i.outputOption == OutputOption.PRINT_SAVE) {
+                    System.out.println(i.data);
+                    savedOutput.addOutput(i);
+                }
+            } else {
+                if (i.outputOption == OutputOption.SAVE) {
+                    savedOutput.addOutput(i);
+                }
+            }
+        }
+        outputStream.outputObjects.clear();
     }
 
     /**

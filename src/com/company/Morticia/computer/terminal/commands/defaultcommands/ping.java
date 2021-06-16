@@ -26,10 +26,10 @@ public class ping extends Command {
             if (IPRegistry.hasEntry(new IPAddress(args.get(0)))) {
                 IPRegistry.getEntry(new IPAddress(args.get(0))).handlePacket(new Packet(computer, new IPAddress(args.get(0)), 0, 0, 1, "0"));
             } else {
-                System.out.println("Invalid IP address. Quitting.");
+                computer.outputStream.addPrintOutput("Invalid Ip adress. Quitting.");
             }
         } else {
-            System.out.println("Error: invalid parameters passed to command. Quitting.");
+            computer.outputStream.addPrintOutput("Error: invalid parameters passed to command. Quitting.");
         }
     }
 }

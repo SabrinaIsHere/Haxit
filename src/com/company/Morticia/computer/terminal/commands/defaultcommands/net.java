@@ -28,27 +28,27 @@ public class net extends Command {
                 if (!flags.isEmpty()) {
                     if (flags.get(0).equals("-l")) {
                         if (computer.networkInterface.network != null) {
-                            System.out.println("Network Devices:");
+                            computer.outputStream.addPrintOutput("Network Devices:");
                             for (NetworkComponent i : computer.networkInterface.network.connectedDevices) {
                                 if (!i.ip.ip.equals(computer.networkInterface.ip.ip)) {
-                                    System.out.println("  " + i.ip.ip);
+                                    computer.outputStream.addPrintOutput("  " + i.ip.ip);
                                 } else {
-                                    System.out.println("  (This) " + i.ip.ip);
+                                    computer.outputStream.addPrintOutput("  (This) " + i.ip.ip);
                                 }
                             }
                         }
                         if (!computer.networkInterface.connectedDevices.isEmpty()) {
-                            System.out.println("Connected Devices:");
+                            computer.outputStream.addPrintOutput("Connected Devices:");
                             for (NetworkComponent i : computer.networkInterface.network.connectedDevices) {
-                                System.out.println("  " + i.ip.ip);
+                                computer.outputStream.addPrintOutput("  " + i.ip.ip);
                             }
                         }
 
                         if (!(computer.networkInterface.network != null || !computer.networkInterface.connectedDevices.isEmpty())) {
-                            System.out.println("Error: No connected devices or network. Quitting.");
+                            computer.outputStream.addPrintOutput("Error: No connected devices or network. Quitting.");
                         }
                     } else if (flags.get(0).equals("-sip")) {
-                        System.out.println(computer.networkInterface.ip.ip);
+                        computer.outputStream.addPrintOutput(computer.networkInterface.ip.ip);
                     }
                 }
             } else {
@@ -56,16 +56,16 @@ public class net extends Command {
                     if (args.size() >= 2) {
                         if (IPRegistry.hasEntry(new IPAddress(args.get(1)))) {
                             for (Port i : IPRegistry.getEntry(new IPAddress(args.get(1))).ports) {
-                                System.out.println(i.portNumber + ": " + i.protocolsToString());
+                                computer.outputStream.addPrintOutput(i.portNumber + ": " + i.protocolsToString());
                             }
                         } else {
-                            System.out.println("Error: Invalid Ip address. Qutting.");
+                            computer.outputStream.addPrintOutput("Error: Invalid Ip address. Quitting.");
                         }
                     }
                 }
             }
             if (args.isEmpty() && flags.isEmpty()) {
-                System.out.println("Error: Please pass an argument or flag. Quitting.");
+                computer.outputStream.addPrintOutput("error: Please pass an argument or flag. Quitting.");
             }
         }
     }

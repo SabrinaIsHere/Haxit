@@ -28,10 +28,10 @@ public class rm extends Command {
                 } else if (currFolder.hasFolder(args.get(0))) {
                     currFolder.removeFolder(args.get(0));
                 } else {
-                    System.out.println("Please enter a valid file or folder to remove.");
+                    computer.outputStream.addPrintOutput("Please enter a valid file or folder to remove.");
                 }
             } else {
-                System.out.println("Please enter a valid file or folder to remove.");
+                computer.outputStream.addPrintOutput("Please enter a valid file or folder to remove.");
             }
         }
     }

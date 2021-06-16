@@ -28,10 +28,10 @@ public class sendpacket extends Command {
                 IPRegistry.getEntry(new IPAddress(args.get(0))).handlePacket(new Packet(computer, new IPAddress(args.get(0)), Integer.parseInt(args.get(1)), Integer.parseInt(args.get(2)), Integer.parseInt(args.get(3)), args.get(4)));
                 EntryPoint.doubleTick = true;
             } else {
-                System.out.println("Invalid IP address. Quitting.");
+                computer.outputStream.addPrintOutput("Invalid IP address. Quitting.");
             }
         } else {
-            System.out.println("Error: invalid parameters passed to command. Quitting.");
+            computer.outputStream.addPrintOutput("Error: Invalid parameters passed to command. Quitting.");
         }
     }
 }

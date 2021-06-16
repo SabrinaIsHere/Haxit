@@ -24,16 +24,16 @@ public class ls extends Command {
     public void execute(Computer computer, ArrayList<String> args, ArrayList<String> flags) {
         if (paramsValid(computer, args, flags)) {
             for (Folder i : computer.filesystem.currFolder.childFolders) {
-                System.out.println(TerminalColor.BLUE + i.folderName + TerminalColor.WHITE_BRIGHT);
+                computer.outputStream.addPrintOutput(TerminalColor.BLUE + i.folderName + TerminalColor.WHITE_BRIGHT);
             }
             for (File<?> i : computer.filesystem.currFolder.childFiles) {
                 if (i.extension.equals("exe")) {
-                    System.out.println(TerminalColor.GREEN_BRIGHT + i.fileName + "." + i.extension + TerminalColor.WHITE_BRIGHT);
+                    computer.outputStream.addPrintOutput(TerminalColor.GREEN_BRIGHT + i.fileName + "." + i.extension + TerminalColor.WHITE_BRIGHT);
                 } else {
                     if (!i.extension.equals("")) {
-                        System.out.println(TerminalColor.WHITE_BRIGHT + i.fileName + "." + i.extension);
+                        computer.outputStream.addPrintOutput(TerminalColor.WHITE_BRIGHT + i.fileName + "." + i.extension);
                     } else {
-                        System.out.println(TerminalColor.WHITE_BRIGHT + i.fileName);
+                        computer.outputStream.addPrintOutput(TerminalColor.WHITE_BRIGHT + i.fileName);
                     }
                 }
             }

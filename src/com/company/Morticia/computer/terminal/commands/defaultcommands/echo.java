@@ -22,15 +22,15 @@ public class echo extends Command {
         if (paramsValid(computer, args, flags)) {
             if (!args.isEmpty()) {
                 for (String i : args) {
-                    System.out.print(i + " ");
+                    computer.outputStream.addPrintOutput(i + " ");
                 }
                 for (String i : flags) {
-                    System.out.print(i + " ");
+                    computer.outputStream.addPrintOutput(i + " ");
                 }
-                System.out.println();
+                computer.outputStream.addPrintOutput("\n");
             }
         } else {
-            System.out.println("Please enter valid parameters. Quitting.");
+            computer.outputStream.addPrintOutput("Please enter valid parameters. Quitting.");
         }
     }
 }
