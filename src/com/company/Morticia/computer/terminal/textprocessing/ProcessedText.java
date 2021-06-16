@@ -10,9 +10,9 @@ import java.util.ArrayList;
  * @since 6/12/21
  */
 public class ProcessedText {
-    String command;
-    ArrayList<String> args;
-    ArrayList<String> flags;
+    public String command;
+    public ArrayList<String> args;
+    public ArrayList<String> flags;
 
     /**
      * The constructor for this class takes a string as a parameter which will be processed and converted into the three fields command, args, and flags
@@ -25,7 +25,13 @@ public class ProcessedText {
 
         String []processedText = textToProcess.split(" ");
 
-        command = processedText[0];
+        if (processedText[0].startsWith("./")) {
+            command = "./";
+            args.add(processedText[0].replaceFirst("./", ""));
+            return;
+        } else {
+            command = processedText[0];
+        }
 
         for (int i = 1; i < processedText.length; i++) {
             // if starts with '-' it's a flag, otherwise it's an argument
@@ -49,7 +55,7 @@ public class ProcessedText {
     /**
      * This method is a getter for the member 'args'
      *
-     * @return ArrayList\<String> args
+     * @return ArrayList args
      */
     public ArrayList<String> getArgs() {
         return args;
@@ -58,9 +64,24 @@ public class ProcessedText {
     /**
      * This method is a getter for the member 'flags'
      *
-     * @return ArrayList\<String> flags
+     * @return ArrayList flags
      */
     public ArrayList<String> getFlags() {
         return flags;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder buffer = new StringBuilder();
+
+        for (String i : args) {
+            buffer.append(i + " ");
+        }
+
+        for (String j : flags) {
+            buffer.append(j + " ");
+        }
+
+        return command + " " + buffer;
     }
 }

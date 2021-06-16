@@ -94,7 +94,7 @@ public class Folder {
      */
     public File removeFile(String fileName) {
         for (int i = 0; i < childFiles.size(); i++) {
-            if (childFiles.get(i).fileName.equals(fileName)) {
+            if ((childFiles.get(i).fileName + "." + childFiles.get(i).extension).equals(fileName)) {
                 return childFiles.remove(i);
             }
         }
@@ -143,8 +143,8 @@ public class Folder {
      * @return boolean Whether for not the file is present
      */
     public boolean hasFile(String fileName) {
-        for (File i : childFiles) {
-            if (i.fileName.equals(fileName)) {
+        for (File<?> i : childFiles) {
+            if ((i.fileName + "." + i.extension).equals(fileName)) {
                 return true;
             }
         }
@@ -173,8 +173,8 @@ public class Folder {
      * @return File First file with name specified
      */
     public File getFile(String fileName) {
-        for (File i : childFiles) {
-            if (i.fileName.equals(fileName)) {
+        for (File<?> i : childFiles) {
+            if ((i.fileName + "." + i.extension).equals(fileName)) {
                 return i;
             }
         }

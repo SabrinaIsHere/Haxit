@@ -1,7 +1,6 @@
 package com.company.Morticia.network;
 
 import com.company.Morticia.computer.process.Process;
-import com.company.Morticia.computer.process.defaultprocesses.DefaultNetworkingProcess;
 
 import java.util.ArrayList;
 

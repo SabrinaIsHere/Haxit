@@ -6,6 +6,7 @@ import com.company.Morticia.computer.profile.Profile;
 import com.company.Morticia.computer.terminal.commands.Command;
 import com.company.Morticia.computer.terminal.commands.CommandInterpreter;
 import com.company.Morticia.computer.terminal.textprocessing.ProcessedText;
+import com.company.Morticia.helpers.TerminalColor;
 
 import java.util.ArrayList;
 
@@ -69,7 +70,7 @@ public class Terminal {
     }
 
     /**
-     * This method will add input to the input stream, this command will then be processed on the nect call of 'processCommand()'
+     * This method will add input to the input stream, this command will then be processed on the next call of 'processCommand()'
      *
      * @param command The command which will be added to the input stream and later executed
      */
@@ -84,6 +85,6 @@ public class Terminal {
      * @return The terminal prefix
      */
     public String terminalPrefix() {
-        return currProfile.username + "$";
+        return TerminalColor.CYAN_BRIGHT + "[" + currProfile.username + " " + TerminalColor.WHITE_BRIGHT + computer.filesystem.currFolder.folderName + TerminalColor.CYAN_BRIGHT + "]$ " + TerminalColor.WHITE_BRIGHT;
     }
 }

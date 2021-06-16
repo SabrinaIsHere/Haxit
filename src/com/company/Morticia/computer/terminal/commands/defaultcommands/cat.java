@@ -4,11 +4,10 @@ import com.company.Morticia.computer.Computer;
 import com.company.Morticia.computer.filesystem.File;
 import com.company.Morticia.computer.filesystem.Folder;
 import com.company.Morticia.computer.terminal.commands.Command;
-import com.company.Morticia.helpers.TerminalColor;
 
 import java.util.ArrayList;
 
-public class ls extends Command {
+public class cat extends Command {
     /**
      * The constructor for Command initializes the three member variables active, commandName, and privilege.
      *
@@ -16,29 +15,26 @@ public class ls extends Command {
      * @param commandName This parameter defines the name of the command, as in, what the terminal must detect in order to call this command
      * @param privilege   This parameter determines the level of privilege the user must have to execute this command, i.e. with privilege 1 only the root could execute it
      */
-    public ls(boolean active, String commandName, int privilege) {
+    public cat(boolean active, String commandName, int privilege) {
         super(active, commandName, privilege);
     }
 
     @Override
     public void execute(Computer computer, ArrayList<String> args, ArrayList<String> flags) {
         if (paramsValid(computer, args, flags)) {
-            for (Folder i : computer.filesystem.currFolder.childFolders) {
-                System.out.println(TerminalColor.BLUE + i.folderName + TerminalColor.WHITE_BRIGHT);
-            }
-            for (File<?> i : computer.filesystem.currFolder.childFiles) {
-                if (i.extension.equals("exe")) {
-                    System.out.println(TerminalColor.GREEN_BRIGHT + i.fileName + "." + i.extension + TerminalColor.WHITE_BRIGHT);
-                } else {
-                    if (!i.extension.equals("")) {
-                        System.out.println(TerminalColor.WHITE_BRIGHT + i.fileName + "." + i.extension);
-                    } else {
-                        System.out.println(TerminalColor.WHITE_BRIGHT + i.fileName);
+            if (!args.isEmpty()) {
+                Folder currFolder = computer.filesystem.currFolder;
+                if (currFolder.hasFile(args.get(0))) {
+                    File<?> file = currFolder.getFile(args.get(0));
+                    for (Object i : file.data) {
+                        System.out.println(i);
                     }
+                } else {
+                    System.out.println("Please enter a valid file or folder to remove.");
                 }
+            } else {
+                System.out.println("Please enter a valid file.");
             }
-        } else {
-            System.out.println("Error: invalid parameters passed to command. Quitting.");
         }
     }
 }

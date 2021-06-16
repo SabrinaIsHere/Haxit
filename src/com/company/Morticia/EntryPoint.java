@@ -36,6 +36,7 @@ public class EntryPoint {
         Scanner sc = new Scanner(System.in);
         while (true) {
             if (!doubleTick) {
+                System.out.print(computer.terminal.terminalPrefix());
                 computer.addInput(sc.nextLine());
                 doubleTick = false;
             }

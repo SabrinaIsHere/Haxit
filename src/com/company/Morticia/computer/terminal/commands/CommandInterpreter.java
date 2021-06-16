@@ -27,6 +27,13 @@ public class CommandInterpreter {
         commands.add(new ping(true, "ping", 0));
         commands.add(new sendpacket(true, "sendpacket", 0));
         commands.add(new net(true, "net", 0));
+        commands.add(new mkdir(true, "mkdir", 0));
+        commands.add(new edit(true, "edit", 0));
+        commands.add(new rm(true, "rm", 0));
+        commands.add(new clear(true, "clear", 0));
+        commands.add(new cat(true, "cat", 0));
+        commands.add(new exec(true, "./", 0));
+        commands.add(new echo(true, "echo", 0));
     }
 
     /**
@@ -39,10 +46,18 @@ public class CommandInterpreter {
         for (Command i : commands) {
             if (i.getCommandName().equals(processedText.getCommand()) && i.getActive()) {
                 if (i.getPrivilegeLevel() <= privilege) {
-                    i.execute(machine, processedText.getArgs(), processedText.getFlags());
+                    if (i.active) {
+                        i.execute(machine, processedText.getArgs(), processedText.getFlags());
+                        return;
+                    } else {
+                        return;
+                    }
+                } else {
+                    return;
                 }
             }
         }
+        System.out.println("Command not found: " + processedText.command);
     }
 
     /**
