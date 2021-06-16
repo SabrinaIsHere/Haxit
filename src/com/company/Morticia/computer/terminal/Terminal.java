@@ -18,7 +18,7 @@ import java.util.ArrayList;
  * @since 6/12/21
  */
 public class Terminal {
-    private Profile currProfile;
+    public Profile currProfile;
 
     private ArrayList<String> inputStream;
     public int inputStreamSize;

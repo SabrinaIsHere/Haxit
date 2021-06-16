@@ -27,7 +27,7 @@ public class Computer {
     public ProcessInterface processInterface;
     public OStream outputStream;
     public OStream savedOutput;
-    public final boolean isPlayerMachine;
+    public boolean isPlayerMachine;
 
     public ArrayList<Profile> profiles;
 
@@ -107,5 +107,14 @@ public class Computer {
      */
     public void startProcess(Process process) {
         processInterface.addProcess(process);
+    }
+
+    public Profile login(String username, String password) {
+        for (Profile i : profiles) {
+            if (username.equals(i.username) && password.equals(i.password)) {
+                return i;
+            }
+        }
+        return null;
     }
 }

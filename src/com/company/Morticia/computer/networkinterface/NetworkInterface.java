@@ -15,7 +15,7 @@ import java.util.Arrays;
  * @since 6/12/21
  */
 public class NetworkInterface extends NetworkComponent {
-    Computer computer;
+    public final Computer computer;
 
     /**
      * The constructor of this object takes several parameters in the service of instancing the object

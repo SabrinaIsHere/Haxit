@@ -1,6 +1,7 @@
 package com.company.Morticia;
 
 import com.company.Morticia.computer.Computer;
+import com.company.Morticia.computer.profile.Profile;
 import com.company.Morticia.helpers.CommandLineHelper;
 import com.company.Morticia.menu.Menu;
 import com.company.Morticia.scenarios.Scenario;
@@ -17,6 +18,22 @@ import java.util.Scanner;
  */
 public class EntryPoint {
     public static boolean doubleTick = false;
+    public static Computer originalPlayerMachine;
+    public static Computer playerMachine;
+    public static Scenario currScenario;
+
+    public static void switchPlayerMachine(Computer newMachine, Profile profile) {
+        currScenario.machines.add(playerMachine);
+        currScenario.machines.remove(newMachine);
+        playerMachine.isPlayerMachine = false;
+        playerMachine = newMachine;
+        playerMachine.isPlayerMachine = true;
+        playerMachine.terminal.currProfile = profile;
+    }
+
+    public static void resetPlayerMachine() {
+        switchPlayerMachine(originalPlayerMachine, originalPlayerMachine.profiles.get(0));
+    }
 
     /**
      * This method is called by the user to start the game once all the prep, i.e. setting up scenarios, is done.
@@ -28,19 +45,20 @@ public class EntryPoint {
             ScenarioRegistry.registerDefaultScenarios();
         }
 
-        Scenario currScenario = Menu.menuEntry();
-        Computer computer = currScenario.playerMachine;
+        currScenario = Menu.menuEntry();
+        playerMachine = currScenario.playerMachine;
+        originalPlayerMachine = currScenario.playerMachine;
 
         CommandLineHelper.clearCommandLine();
 
         Scanner sc = new Scanner(System.in);
         while (true) {
             if (!doubleTick) {
-                System.out.print(computer.terminal.terminalPrefix());
-                computer.addInput(sc.nextLine());
+                System.out.print(playerMachine.terminal.terminalPrefix());
+                playerMachine.addInput(sc.nextLine());
                 doubleTick = false;
             }
-            computer.tick();
+            playerMachine.tick();
             for (Computer i : currScenario.machines) {
                 i.tick();
             }

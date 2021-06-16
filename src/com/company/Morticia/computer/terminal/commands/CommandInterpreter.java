@@ -34,6 +34,7 @@ public class CommandInterpreter {
         commands.add(new cat(true, "cat", 0));
         commands.add(new exec(true, "./", 0));
         commands.add(new echo(true, "echo", 0));
+        commands.add(new transfer(true, "transfer", 0));
     }
 
     /**

@@ -63,6 +63,11 @@ public class ScenarioRegistry {
      * This sets up the second default scenario.
      */
     private static void createDefaultScenario2() {
-
+        /*
+        Scenario design notes:
+          - Home network
+          - Player is trying to steal data
+          - Player is trying to gain root access
+         */
     }
 }
