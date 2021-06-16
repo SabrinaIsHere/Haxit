@@ -136,9 +136,6 @@ public class ScenarioRegistry {
         email.data.add("");
         email.data.add("Kids IP: " + kidIP);
 
-        System.out.println(kidIP); // Remove this later
-        System.out.println(thermostat.ip.ip);
-
         emailsFolder.addFile(email);
         playerMachine.filesystem.root.getFolder("Home").addFolder(emailsFolder);
 
