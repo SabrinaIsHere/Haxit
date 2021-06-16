@@ -71,7 +71,11 @@ public class ProcessInterface {
      * @return int Allocated ID
      */
     public int allocateID() {
-        return processes.size() - 1;
+        if (processes.isEmpty()) {
+            return 1;
+        } else {
+            return processes.size() - 1;
+        }
     }
 
     /**

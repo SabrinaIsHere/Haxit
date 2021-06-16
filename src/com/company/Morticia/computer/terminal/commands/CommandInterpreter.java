@@ -1,7 +1,5 @@
 package com.company.Morticia.computer.terminal.commands;
 
-import com.company.Morticia.EntryPoint;
-import com.company.Morticia.Main;
 import com.company.Morticia.computer.Computer;
 import com.company.Morticia.computer.terminal.commands.defaultcommands.*;
 import com.company.Morticia.computer.terminal.textprocessing.ProcessedText;
@@ -35,6 +33,7 @@ public class CommandInterpreter {
         commands.add(new exec(true, "./", 0));
         commands.add(new echo(true, "echo", 0));
         commands.add(new transfer(true, "transfer", 0));
+        commands.add(new processCommand(true, "process", 1));
     }
 
     /**
@@ -49,16 +48,14 @@ public class CommandInterpreter {
                 if (i.getPrivilegeLevel() <= privilege) {
                     if (i.active) {
                         i.execute(machine, processedText.getArgs(), processedText.getFlags());
-                        return;
-                    } else {
-                        return;
                     }
                 } else {
-                    return;
+                    machine.outputStream.addPrintOutput("Privilege level not high enough to execute command.");
                 }
+                return;
             }
         }
-        System.out.println("Command not found: " + processedText.command);
+        machine.outputStream.addPrintOutput("Command not found: " + processedText.command);
     }
 
     /**

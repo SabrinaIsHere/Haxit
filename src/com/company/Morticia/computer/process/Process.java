@@ -14,9 +14,9 @@ import java.util.ArrayList;
  * @since 6/14/21
  */
 public class Process {
-    String processName;
-    int processID;
-    boolean active;
+    public final String processName;
+    public final int processID;
+    public boolean active;
     public Computer computer;
     public ArrayList<Packet> packetQueue;
     public ArrayList<String> dataQueue;

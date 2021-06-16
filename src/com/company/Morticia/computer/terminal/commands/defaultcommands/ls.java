@@ -38,7 +38,7 @@ public class ls extends Command {
                 }
             }
         } else {
-            System.out.println("Error: invalid parameters passed to command. Quitting.");
+            computer.outputStream.addPrintOutput("Error: Invalid parameters passed to command. Quitting.");
         }
     }
 }
