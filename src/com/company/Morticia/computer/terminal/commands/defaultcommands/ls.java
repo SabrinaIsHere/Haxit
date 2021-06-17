@@ -24,7 +24,7 @@ public class ls extends Command {
     public void execute(Computer computer, ArrayList<String> args, ArrayList<String> flags) {
         if (paramsValid(computer, args, flags)) {
             for (Folder i : computer.filesystem.currFolder.childFolders) {
-                computer.outputStream.addPrintOutput(TerminalColor.BLUE + i.folderName + TerminalColor.WHITE_BRIGHT);
+                computer.outputStream.addPrintOutput(TerminalColor.BLUE_BRIGHT + i.folderName + TerminalColor.WHITE_BRIGHT);
             }
             for (File<?> i : computer.filesystem.currFolder.childFiles) {
                 if (i.extension.equals("exe")) {
