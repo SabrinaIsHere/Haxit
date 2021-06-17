@@ -1,10 +1,5 @@
 # Haxit
 
-Haxit is a hacking game, but one unlike any which has existed before. Unlike other hacking games, you actually have to do some hacking, getting into the nitty gritty
-of networking in order to accomplish your goals. Also unlike other games, you can design your own computers to hack or hack those designed by other people.
+Haxit is a hacking game, but one disimilar to any which I have encountered. Though it's in its infancy, Haxit is meant to be a more realistic representation of 'hacking' than that which is found in the average "type four commands and hack anything" games. At the moment the computers in Haxit are relatively simple, though I have plans to change that as time goes on.
 
-At the moment Haxit is in it's beta, and as such several features will be added later to flesh out the game play and smoothen the process of playing. The simulated
-computers are also a little simplistic at the moment, and as time goes on will more closely resemble their real life counter parts. 
-
-The game is very much usable now, and a wiki is available to help guide you through setting it up. There's also a discord server linked on the wiki where you can 
-ask questions, make suggestions, and otherwise interact with the community. Happy hacking!
+The beta release is out and ready for play, though there is still much work to be done. Documentation and tutorials can be found on the [wiki](https://github.com/MorticiaGrey/Haxit/wiki), I'll be happy to help out with any issues you have if you join the [Discord](https://discord.gg/RKUXN9k9wQ) or open an issue on the github, and I am especially happy to receive feedback if you have it. That said, Happy Hacking!
