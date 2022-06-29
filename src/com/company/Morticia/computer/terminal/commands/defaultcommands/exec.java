@@ -6,6 +6,7 @@ import com.company.Morticia.computer.filesystem.Folder;
 import com.company.Morticia.computer.terminal.commands.Command;
 import com.company.Morticia.computer.terminal.commands.CommandInterpreter;
 import com.company.Morticia.computer.terminal.textprocessing.ProcessedText;
+import com.company.Morticia.gui.terminal.TerminalIO;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -34,14 +35,12 @@ public class exec extends Command {
                             ProcessedText i = new ProcessedText(k.toString());
                             // If command [get_input] get input
                             if (i.command.equals("[get_input]")) {
-                                Scanner sc = new Scanner(System.in);
-                                i.command = sc.nextLine();
+                                i.command = TerminalIO.nextLine();
                             }
                             // If any arg in the file is [get_input] we will get user input
                             for (int j = 0; j < i.args.size(); j++) {
                                 if (i.args.get(j).equals("[get_input]")) {
-                                    Scanner sc = new Scanner(System.in);
-                                    i.args.set(j, sc.nextLine());
+                                    i.args.set(j, TerminalIO.nextLine());
                                 }
                             }
                             computer.terminal.commandInterpreter.findAndExecuteCommand(computer, i, computer.terminal.currProfile.privilege);

@@ -2,6 +2,7 @@ package com.company.Morticia.network;
 
 import com.company.Morticia.EntryPoint;
 import com.company.Morticia.computer.process.ProcessInterface;
+import com.company.Morticia.gui.terminal.TerminalIO;
 
 public class DefaultNetworkComponentProcess extends NetworkProcess {
     /**
@@ -24,7 +25,7 @@ public class DefaultNetworkComponentProcess extends NetworkProcess {
             Packet packet = packetQueue.get(0);
             if (networkComponent.isPacketValid(packet, 1)) {
                 if (packet.data.equals("1")) {
-                    System.out.println("Successfully pinged " + packet.senderIP.ip);
+                    TerminalIO.println("Successfully pinged " + packet.senderIP.ip);
                 } else {
                     if (IPRegistry.hasEntry(packet.senderIP)) {
                         IPRegistry.getEntry(packet.senderIP).handlePacket(new Packet(networkComponent.ip, packet.senderIP, 0, 0, 1, "1"));

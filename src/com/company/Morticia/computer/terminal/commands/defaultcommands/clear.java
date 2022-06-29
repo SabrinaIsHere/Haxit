@@ -2,6 +2,7 @@ package com.company.Morticia.computer.terminal.commands.defaultcommands;
 
 import com.company.Morticia.computer.Computer;
 import com.company.Morticia.computer.terminal.commands.Command;
+import com.company.Morticia.gui.terminal.TerminalIO;
 import com.company.Morticia.helpers.CommandLineHelper;
 
 import java.util.ArrayList;
@@ -20,6 +21,6 @@ public class clear extends Command {
 
     @Override
     public void execute(Computer computer, ArrayList<String> args, ArrayList<String> flags) {
-        CommandLineHelper.clearCommandLine();
+        TerminalIO.clearTerminal();
     }
 }

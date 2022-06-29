@@ -5,6 +5,7 @@ import com.company.Morticia.computer.filesystem.File;
 import com.company.Morticia.computer.filesystem.Folder;
 import com.company.Morticia.computer.terminal.commands.Command;
 import com.company.Morticia.computer.terminal.textprocessing.ProcessedText;
+import com.company.Morticia.gui.terminal.TerminalIO;
 import com.company.Morticia.helpers.CommandLineHelper;
 
 import java.util.ArrayList;
@@ -34,11 +35,12 @@ public class edit extends Command {
                     if (name.size() >= 2) {
                         if (name.get(1).equals("txt")) {
                             File<String> newFile = currFolder.getFile(name.get(0) + "." + name.get(1));
+                            // TODO: 6/20/21 Update to new GUI
                             CommandLineHelper.fetchLongInput(newFile.data);
                         } else if (name.get(1).equals("exe")) {
                             File<ProcessedText> newFile = currFolder.getFile(name.get(0) + "." + name.get(1));
                             for (ProcessedText i : newFile.data) {
-                                System.out.println(i.toString());
+                                TerminalIO.println(i);
                             }
                             concatenateCommandLists(newFile.data, CommandLineHelper.fetchLongInput()); // error here
                         } else {

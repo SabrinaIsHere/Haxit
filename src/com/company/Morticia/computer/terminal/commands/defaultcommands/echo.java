@@ -2,6 +2,7 @@ package com.company.Morticia.computer.terminal.commands.defaultcommands;
 
 import com.company.Morticia.computer.Computer;
 import com.company.Morticia.computer.terminal.commands.Command;
+import com.company.Morticia.gui.terminal.TerminalIO;
 
 import java.util.ArrayList;
 
@@ -22,12 +23,12 @@ public class echo extends Command {
         if (paramsValid(computer, args, flags)) {
             if (!args.isEmpty()) {
                 for (String i : args) {
-                    System.out.print(i + " ");
+                    TerminalIO.print(i + " ");
                 }
                 for (String i : flags) {
-                    System.out.print(i + " ");
+                    TerminalIO.print(i + " ");
                 }
-                System.out.println();
+                TerminalIO.println("");
             }
         } else {
             computer.outputStream.addPrintOutput("Please enter valid parameters. Quitting.");

@@ -5,10 +5,13 @@ import com.company.Morticia.computer.Computer;
 import com.company.Morticia.computer.networkinterface.NetworkInterface;
 import com.company.Morticia.computer.profile.Profile;
 import com.company.Morticia.computer.terminal.commands.Command;
+import com.company.Morticia.gui.terminal.TerminalEntrypoint;
+import com.company.Morticia.gui.terminal.TerminalIO;
 import com.company.Morticia.network.IPAddress;
 import com.company.Morticia.network.IPRegistry;
 import com.company.Morticia.network.NetworkComponent;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -31,24 +34,24 @@ public class transfer extends Command {
                 if (IPRegistry.hasEntry(new IPAddress(args.get(0)))) {
                     NetworkComponent destMachine = IPRegistry.getEntry(new IPAddress(args.get(0)));
                     if (destMachine instanceof NetworkInterface) {
-                        System.out.println("Are you sure you'd like to switch to " + args.get(0) + "? [y/n]");
-                        Scanner sc = new Scanner(System.in);
-                        while (true) {
-                            String input = sc.nextLine();
+                        // TODO: 6/24/21 fix this shit
+                        //TerminalIO.println("Are you sure you'd like to switch to " + args.get(0) + "? [y/n]");
+                        /*while (true) {
+                            String input = "y";//TerminalIO.nextLine(); // next line causing problems
                             if (input.equals("y")) {
                                 break;
                             } else if (input.equals("n")) {
-                                System.out.println("Cancelled.");
+                                TerminalIO.println("Cancelled.");
                                 return;
                             }
-                        }
+                        }*/
                         Computer destComputer = ((NetworkInterface) destMachine).computer;
 
                         Profile profile = destComputer.login(args.get(1), args.get(2));
                         if (profile != null) {
                             EntryPoint.switchPlayerMachine(destComputer, profile);
                         } else {
-                            System.out.println("Incorrect username or password");
+                            TerminalIO.println("Incorrect username or password");
                         }
                     } else {
                         computer.outputStream.addPrintOutput("Machine not transferable");

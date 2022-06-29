@@ -10,6 +10,7 @@ import java.util.ArrayList;
  * NOT FINISHED DO NOT USE
  * @deprecated
  */
+@Deprecated
 public class DiskWriter {
     public static void writeFile(String name, String path, ArrayList<String> data) {
         String fullPath = path;

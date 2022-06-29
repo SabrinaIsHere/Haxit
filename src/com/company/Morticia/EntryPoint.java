@@ -2,12 +2,16 @@ package com.company.Morticia;
 
 import com.company.Morticia.computer.Computer;
 import com.company.Morticia.computer.profile.Profile;
+import com.company.Morticia.gui.GUIEntryPoint;
+import com.company.Morticia.gui.terminal.TerminalEntrypoint;
+import com.company.Morticia.gui.terminal.TerminalIO;
 import com.company.Morticia.helpers.CommandLineHelper;
 import com.company.Morticia.menu.Menu;
 import com.company.Morticia.network.NetworkComponent;
 import com.company.Morticia.scenarios.Scenario;
 import com.company.Morticia.scenarios.ScenarioRegistry;
 
+import javax.swing.*;
 import java.util.Scanner;
 
 /**
@@ -42,7 +46,10 @@ public class EntryPoint {
      * @param initDefaultScenarios Whether or not to initialize the default scenarios before calling the menu
      */
     public static void entryPoint(boolean initDefaultScenarios) {
-        if (initDefaultScenarios) {
+        ScenarioRegistry.registerDefaultScenarios();
+        GUIEntryPoint.startGUI();
+
+        /*if (initDefaultScenarios) {
             ScenarioRegistry.registerDefaultScenarios();
         }
 
@@ -81,6 +88,33 @@ public class EntryPoint {
                     i.tick();
                 }
             }
+        }*/
+    }
+
+    public static void runMachines(Scenario scenario) {
+        currScenario = scenario;
+        TerminalEntrypoint.entryPoint(scenario);
+
+        playerMachine = currScenario.playerMachine;
+        originalPlayerMachine = currScenario.playerMachine;
+
+        TerminalIO.setPrefix(playerMachine.terminal.terminalPrefix());
+    }
+
+    public static void gameTick() {
+        if (!doubleTick) {
+            playerMachine.addInput(TerminalIO.nextLine());
         }
+        doubleTick = false;
+        playerMachine.tick();
+        for (Computer i : currScenario.machines) {
+            i.tick();
+        }
+        if (currScenario.networkComponents != null) {
+            for (NetworkComponent i : currScenario.networkComponents) {
+                i.tick();
+            }
+        }
+        TerminalIO.setPrefix(playerMachine.terminal.terminalPrefix());
     }
 }

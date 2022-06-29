@@ -6,7 +6,7 @@ import com.company.Morticia.computer.profile.Profile;
 import com.company.Morticia.computer.terminal.commands.Command;
 import com.company.Morticia.computer.terminal.commands.CommandInterpreter;
 import com.company.Morticia.computer.terminal.textprocessing.ProcessedText;
-import com.company.Morticia.helpers.TerminalColor;
+import com.company.Morticia.helpers.TColor;
 
 import java.util.ArrayList;
 
@@ -85,6 +85,6 @@ public class Terminal {
      * @return The terminal prefix
      */
     public String terminalPrefix() {
-        return TerminalColor.CYAN_BRIGHT + "[" + currProfile.username + " " + TerminalColor.WHITE_BRIGHT + computer.filesystem.currFolder.folderName + TerminalColor.CYAN_BRIGHT + "]$ " + TerminalColor.WHITE_BRIGHT;
+        return TColor.CYAN + "[" + currProfile.username + " " + TColor.TERMINATE + TColor.WHITE + computer.filesystem.currFolder.folderName + TColor.TERMINATE + TColor.CYAN + "]$ " + TColor.TERMINATE;
     }
 }

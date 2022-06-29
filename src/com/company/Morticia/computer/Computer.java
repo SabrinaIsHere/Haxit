@@ -10,6 +10,7 @@ import com.company.Morticia.computer.process.ProcessInterface;
 import com.company.Morticia.computer.profile.Profile;
 import com.company.Morticia.computer.terminal.Terminal;
 import com.company.Morticia.computer.terminal.commands.Command;
+import com.company.Morticia.gui.terminal.TerminalIO;
 
 import java.util.ArrayList;
 
@@ -60,11 +61,11 @@ public class Computer {
         for (OutputObject i : outputStream.outputObjects) {
             if (isPlayerMachine) {
                 if (i.outputOption == OutputOption.PRINT) {
-                    System.out.println(i.data);
+                    TerminalIO.println(i.data);
                 } else if (i.outputOption == OutputOption.SAVE) {
                     savedOutput.addOutput(i);
                 } else if (i.outputOption == OutputOption.PRINT_SAVE) {
-                    System.out.println(i.data);
+                    TerminalIO.println(i.data);
                     savedOutput.addOutput(i);
                 }
             } else {

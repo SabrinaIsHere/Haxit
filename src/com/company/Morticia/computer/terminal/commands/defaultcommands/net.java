@@ -57,7 +57,6 @@ public class net extends Command {
                         if (IPRegistry.hasEntry(new IPAddress(args.get(1)))) {
                             for (Port i : IPRegistry.getEntry(new IPAddress(args.get(1))).ports) {
                                 computer.outputStream.addPrintOutput(i.portNumber + ": " + i.protocolsToString());
-                                //System.out.println(i.portNumber + ": " + i.protocolsToString());
                             }
                         } else {
                             computer.outputStream.addPrintOutput("Error: Invalid Ip address. Quitting.");

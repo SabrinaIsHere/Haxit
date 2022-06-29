@@ -11,6 +11,7 @@ import com.company.Morticia.computer.filesystem.Folder;
  * NOT FINISHED DO NOT USE
  * @deprecated
  */
+@Deprecated
 public class DiskHelper {
     private static String path;
 

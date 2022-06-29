@@ -3,7 +3,7 @@ package com.company.Morticia.computer.terminal.commands.defaultcommands;
 import com.company.Morticia.computer.Computer;
 import com.company.Morticia.computer.process.Process;
 import com.company.Morticia.computer.terminal.commands.Command;
-import com.company.Morticia.helpers.TerminalColor;
+import com.company.Morticia.helpers.TColor;
 import com.company.Morticia.network.NetworkProcess;
 
 import java.util.ArrayList;
@@ -27,16 +27,16 @@ public class processCommand extends Command {
                 if (flags.get(0).equals("-l")) {
                     for (Process i : computer.processInterface.processes) {
                         if (i.active) {
-                            computer.outputStream.addPrintOutput(TerminalColor.WHITE_BRIGHT + i.processName + ": " + i.processID + " (active)");
+                            computer.outputStream.addPrintOutput(TColor.WHITE + i.processName + ": " + i.processID + " (active)" + TColor.TERMINATE);
                         } else {
-                            computer.outputStream.addPrintOutput(TerminalColor.WHITE + i.processName + ": " + i.processID + "( inactive)" + TerminalColor.WHITE_BRIGHT);
+                            computer.outputStream.addPrintOutput(TColor.WHITE + i.processName + ": " + i.processID + "( inactive)" + TColor.TERMINATE);
                         }
                     }
                     for (NetworkProcess i : computer.networkInterface.processInterface.processes) {
                         if (i.active) {
-                            computer.outputStream.addPrintOutput(TerminalColor.WHITE_BRIGHT + i.processName + ": " + i.processID + " (active)");
+                            computer.outputStream.addPrintOutput(TColor.WHITE + i.processName + ": " + i.processID + " (active)" + TColor.TERMINATE);
                         } else {
-                            computer.outputStream.addPrintOutput(TerminalColor.WHITE + i.processName + ": " + i.processID + "( inactive)" + TerminalColor.WHITE_BRIGHT);
+                            computer.outputStream.addPrintOutput(TColor.WHITE + i.processName + ": " + i.processID + "( inactive)" + TColor.TERMINATE);
                         }
                     }
                 } else {

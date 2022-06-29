@@ -154,7 +154,7 @@ public class ScenarioRegistry {
         thermostatInstructionManual.data.add("This one stop shop for everything networked thermostat will have all the documentation you need to get");
         thermostatInstructionManual.data.add("your households heating automated.");
         thermostatInstructionManual.data.add("");
-        thermostatInstructionManual.data.add("The first think you'll want to do is ping your thermostat.");
+        thermostatInstructionManual.data.add("The first thing you'll want to do is ping your thermostat.");
         thermostatInstructionManual.data.add("If your system supports it, try sendpacket [ip] 100 100 43 [command] in your command prompt.");
         thermostatInstructionManual.data.add("The commands are: get, set, on, and off.");
         thermostatInstructionManual.data.add("Get gets the temperature, set sets the goal temperature, on turns on the thermostat and off turns off the thermostat.");
@@ -180,5 +180,19 @@ public class ScenarioRegistry {
 
         // Init and add scenario
         registerScenario(new Scenario(new Computer[]{dadsMachine, momsMachine, kidsMachine}, new NetworkComponent[]{thermostat}, playerMachine, "Hack a Home Network"));
+    }
+
+    public void createDefaultScenario3() {
+        /*
+        * Design Notes -
+        *   Overview:
+        *       Basic plot is that you're meant to be hacking into a corporation.
+        *       Corporation is doing classic bad shit, stealing wages, all that.
+        *       The player has been contracted to cripple the corporation in order to help striking workers.
+        *
+        *   Network Device List:
+        *       Portal (pinged for access to website)
+        *
+        */
     }
 }

@@ -19,6 +19,7 @@ public class Menu {
      * @return Scenario The scenario which the player chose
      */
     public static Scenario menuEntry() {
+        /*
         System.out.println("Please select one of the following scenarios by typing in its corresponding number: ");
         int j = 0;
         for (Scenario i : ScenarioRegistry.ScenarioList) {
@@ -40,6 +41,10 @@ public class Menu {
             if (input <= j && input >= 0) {
                 return ScenarioRegistry.ScenarioList.get(input - 1);
             }
-        }
+        } */
+
+
+
+        return new Scenario(null, null, null);
     }
 }
